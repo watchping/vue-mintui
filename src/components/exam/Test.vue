@@ -27,7 +27,7 @@
       <mt-tab-container-item id="tab1">
         <div v-for="(item, i) in rows" :key="i" class="rootstyle itemstyle row">
           <!--2:左侧图片标题子标题-->
-          <div class="leftimgtxt col-xs-12 col-sm-6 col-md-8">
+          <div class="leftimgtxt ">
             <img :src="require(`@/assets/img/${item.img}`)" class="imgstyle" />
             <div class="lefttitle">
               <span class="title">{{ item.title }}</span>
@@ -35,7 +35,7 @@
             </div>
           </div>
           <!--3:右侧发表时间-->
-          <span class="sendtime col-xs-6 col-md-4">
+          <span class="sendtime ">
             {{ item.time }}
           </span>
         </div>
@@ -77,7 +77,7 @@ import list from "@/assets/messagelist.json";
 export default {
   data() {
     return {
-      selected: "",
+      selected: "tab1",
       rows: list.data,
     };
   },

@@ -10,6 +10,8 @@ Vue.use(MintUI)
 //引入图标样式文件
 import "@/assets/font/font_test/iconfont.css"
 
+import "bootstrap-icons/font/bootstrap-icons.css"
+
 Vue.config.productionTip = false
 
 new Vue({
