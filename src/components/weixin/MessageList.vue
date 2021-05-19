@@ -4,10 +4,10 @@
       v-for="(item, i) in rows"
       :key="i"
       class="row d-flex align-items-center justify-content-between py-1 pr-3"
-      style="border-bottom: 1px solid #d9d9d9"      
+      style="border-bottom: 1px solid #d9d9d9"
     >
       <!--2:左侧图片标题子标题-->
-      <div class="col-2 col-sm-1 ">
+      <div class="col-2 col-sm-1">
         <img
           :src="require(`@/assets/img/${item.img}`)"
           class="rounded mx-auto d-block"
@@ -29,13 +29,10 @@
 </template>
 
 <script>
-import list from "@/assets/json/messagelist.json";
 export default {
-    data(){
-        return {
-            rows: list.data,
-        }
-    }
+  props: {
+    rows: { default: [] },
+  },
 };
 </script>
 

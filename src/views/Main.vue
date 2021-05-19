@@ -10,7 +10,7 @@
 
     <mt-tab-container v-model="selected" swipeable class="py-5">
       <mt-tab-container-item id="微信">
-        <message-list></message-list>
+        <message-list :rows="rows"></message-list>
       </mt-tab-container-item>
       <mt-tab-container-item id="通讯录">
         <div>
@@ -19,7 +19,8 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="发现">
         <div>
-          <h5>这是“发现”页面板内容，待完成...</h5>
+          <!-- <h5>这是“发现”页面板内容，待完成...</h5> -->
+          <router-view ></router-view>
         </div>
       </mt-tab-container-item>
       <mt-tab-container-item id="我">
@@ -30,25 +31,35 @@
     </mt-tab-container>
     <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="微信">
-        <img slot="icon" src="@/assets/img/01.png" />
+        <tabbaricon
+          :focused="tabbarSelected[0]"
+          :selectedImage="require('@/assets/img/ic_weixin_selected.png')"
+          :normalImage="require('@/assets/img/ic_weixin_normal.png')"
+        ></tabbaricon>
         微信
       </mt-tab-item>
       <mt-tab-item id="通讯录">
-        <img slot="icon" src="@/assets/img/02.png" />
+        <tabbaricon
+          :focused="tabbarSelected[1]"
+          :selectedImage="require('@/assets/img/ic_contacts_selected.png')"
+          :normalImage="require('@/assets/img/ic_contacts_normal.png')"
+        ></tabbaricon>
         通讯录
       </mt-tab-item>
       <mt-tab-item id="发现">
-        <!-- <img slot="icon" src="@/assets/img/03.png" /> -->
-        <!-- <i slot="icon" class="bi-alarm" style="font-size: 1rem; color: cornflowerblue;"></i> -->
         <tabbaricon
           :focused="tabbarSelected[2]"
           :selectedImage="require('@/assets/img/ic_find_selected.png')"
           :normalImage="require('@/assets/img/ic_find_normal.png')"
         ></tabbaricon>
-        <span>发现</span>
+        发现
       </mt-tab-item>
       <mt-tab-item id="我">
-        <img slot="icon" src="@/assets/img/01.png" />
+        <tabbaricon
+          :focused="tabbarSelected[3]"
+          :selectedImage="require('@/assets/img/ic_me_selected.png')"
+          :normalImage="require('@/assets/img/ic_me_normal.png')"
+        ></tabbaricon>
         我
       </mt-tab-item>
     </mt-tabbar>
@@ -59,29 +70,33 @@
 
 import TitleBar from "@/components/weixin/TitleBar.vue";
 import TabBarIcon from "@/components/weixin/TabbarIcon.vue";
-import MessageList from '../components/weixin/MessageList.vue';
-
+import MessageList from "../components/weixin/MessageList.vue";
+import list from "@/assets/json/messagelist.json"; //从JSON文件导入微信消息列表内容
 export default {
   data() {
     return {
-      selected: "微信",  //选中的TabBar
-      myLeftTitle: "微信(49)",     
+      rows: list.data,//微信消息列表内容
+      selected: "微信", //选中的TabBar
+      myLeftTitle: "微信(49)",
 
       //创建数组保存tabbar图片状态
-      tabbarSelected: [true, false, false, false], //第1\2\3\4个按钮是否选中状态      
+      tabbarSelected: [true, false, false, false], //第1\2\3\4个按钮是否选中状态
     };
-  },    
+  },
   components: {
     TitleBar,
     MessageList,
-    tabbaricon: TabBarIcon   
+    tabbaricon: TabBarIcon,
   },
-  methods:{
-    mySearch(){
+  methods: {
+    mySearch() {
       this.$toast("搜索功能，待完成...");
     },
-    myAdd(){
+    myAdd() {
       this.$toast("增加功能，待完成...");
+    },
+    updateTitle(){
+      this.myLeftTitle = `微信(${this.rows.length})`;
     }
   },
   watch: {
@@ -96,6 +111,10 @@ export default {
           break;
         case "发现":
           this.tabbarSelected[2] = true;
+          console.log(this.$route);
+          if(this.$route.path=="/"){
+            this.$router.push("/login");
+          }
           break;
         case "我":
           this.tabbarSelected[3] = true;
@@ -105,17 +124,22 @@ export default {
       }
       //console.log(this.tabbarSelected);
     },
+    rows(){
+      this.updateTitle();
+    }
   },
+  created(){
+    this.updateTitle();
+  }
 };
 </script>
 
 <style scoped>
 .mint-tabbar > .mint-tab-item.is-selected {
   background-color: transparent;
-  color: blue;
+  color: #28a745;
 }
-.mint-tab-container-wrap {
-  width: 100%;
-  min-height: 617px; /* // 需要设置最小高度 */
+.mint-tabbar > .mint-tab-item {
+  color: #6c757d;
 }
 </style>
