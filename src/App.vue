@@ -5,6 +5,9 @@
 </template>
 
 <style>
+label{
+    margin-bottom: 0rem;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

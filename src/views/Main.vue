@@ -8,20 +8,19 @@
       :add="myAdd"
     ></title-bar>
 
-    <mt-tab-container v-model="selected" swipeable class="py-5">
+    <mt-tab-container v-model="selected" class="py-5">
       <mt-tab-container-item id="微信">
         <message-list :rows="rows"></message-list>
       </mt-tab-container-item>
       <mt-tab-container-item id="通讯录">
         <div>
           <h5>这是“通讯录”页面板内容，待完成...</h5>
+          <tab-1></tab-1>
         </div>
       </mt-tab-container-item>
-      <mt-tab-container-item id="发现">
-        <div>
+      <mt-tab-container-item id="发现">        
           <!-- <h5>这是“发现”页面板内容，待完成...</h5> -->
-          <router-view ></router-view>
-        </div>
+          <router-view ></router-view>        
       </mt-tab-container-item>
       <mt-tab-container-item id="我">
         <div>
@@ -72,6 +71,7 @@ import TitleBar from "@/components/weixin/TitleBar.vue";
 import TabBarIcon from "@/components/weixin/TabbarIcon.vue";
 import MessageList from "../components/weixin/MessageList.vue";
 import list from "@/assets/json/messagelist.json"; //从JSON文件导入微信消息列表内容
+import Tab1 from './test/Tab1.vue';
 export default {
   data() {
     return {
@@ -87,6 +87,7 @@ export default {
     TitleBar,
     MessageList,
     tabbaricon: TabBarIcon,
+    Tab1,
   },
   methods: {
     mySearch() {

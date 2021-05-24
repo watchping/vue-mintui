@@ -5,7 +5,7 @@
     <mt-field placeholder="请输入用户名" v-model="uname"></mt-field>
     <mt-field placeholder="请输入密码"   v-model="upwd"></mt-field>
     <!--添加一个登录按钮-->
-    <mt-button size="large" @click="myLogin">登陆</mt-button>
+    <mt-button type="default" size="large" @click="myLogin">登陆</mt-button>
   </div>
 </template>
 <script>
@@ -42,9 +42,10 @@ export default {
       var user = { uname, upwd};
       //6:发送ajax请求      
       let result  = await Login(user);
+      console.log(result)
       //7判断返回结果
       if (result.code != 200) {
-          this.$messagebox("消息", "用户名或密码有误");
+          this.$messagebox("登录错误", result.msg);
       } else {
           this.$toast("登录成功");
           //应该把用户ID数据保存在本地，待完成...

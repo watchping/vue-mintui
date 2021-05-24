@@ -1,9 +1,9 @@
 <template>
   <!--1:弹性布局-->
-  <div class="row p-3 d-flex flex-wrap">
+  <div class="row p-3 d-flex flex-wrap justify-content-between">
     <!--2:一个商品-->
     <div
-      style="width: 47%; border-radius: 5px"
+      style="width: 46%; border-radius: 5px"
       class="m-1 p-1 border"
       v-for="(item, i) of list"
       :key="i"
@@ -15,9 +15,9 @@
       <!--5:商品价格-->
       <h5 class="price font-weight-bold">￥{{ item.price }}</h5>
       <!--6:加入购物车按钮-->
-      <mt-button size="small" @click="addCart(item.lid)">
+      <mt-button size="large" @click="addCart(item.lid)" class="mb-0">
         加入购物车
-      </mt-button>
+      </mt-button>      
     </div>
     <!--7:查看购物车按钮-->
     <mt-button size="large" @click="jumpCart"> 查看购物车 </mt-button>
@@ -91,6 +91,11 @@ export default {
 };
 </script>
 <style scoped>
+
+
+#label.mint-button-text{
+  margin-bottom:0rem
+}
 /*一个商品*/
 .goods-item {
   width: 48%; /*占用屏幕一半*/

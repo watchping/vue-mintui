@@ -14,6 +14,10 @@ import Cart from '@/components/xz/Cart.vue'//学子商城登录组件
 Vue.use(VueRouter)
 
 const routes = [  
+
+
+
+
   {
     path:"/",
     component:Main,
@@ -34,7 +38,10 @@ const routes = [
   },
 
 
-
+  {        
+    path: '/login', //当/login匹配成功，Login会被渲染在 Main 的 <router-view> 中
+    component: Login,
+  },
 
   {path:"/Exam01",component:Exam01},
   {path:"/Exam02",component:Exam02}
